@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Lbx-TsTxWwdz</title>
+    <!--If(good code){Writer is SexBear-Lbx;}else{I don’t know who is writer;}-->
+    <!--
+        重点：原型，词法作用率，闭包，函数四种调用模式。
+    -->
+
+    <!--JavaScript历史背景-->
+    <!--JavaScript构成
+        1.ECMAScript
+        2.DOM document object model
+        3.BOM browser object model
+    -->
+    <!--数据类型
+        1.基本数据类型
+            number string boolean
+        2.复合数据类型
+            object 内置对象 自定义对象
+        3.空类型
+            null undefined
+        4.核心类型
+            object function
+    -->
+    <!--对象实例化
+        对象实例化。 对象就是实例 实例也是对象
+    -->
+    <!-- =和==和===区别
+        1.=
+            赋值
+        2.==
+            先隐式类型转换 再比较。
+            1.如果有一个操作数为数字，将另一个操作数转换成数字再比较
+            2.如果有一个操作数为boolean，将该boolean转换成数字
+            3.如果有一个操作数为对象，将该操作数尝试着转换成原始值去比较(优先调用valueOf方法 如果失败再调用toString方法)
+        3.===
+            直接比较 当只有运算符左右两边操作数 类型 值 相同时 返回true
+    -->
+    <!--数字与字符串转换
+        1.toString()
+        2.String()
+        3.+ ''
+        4.new String(number)
+        性能: 3 > 2 > 1 > 4
+    -->
+    <!--字符串与数字转换
+        1.Number()
+        2.parseInt() and parseFloat()
+        3.new Number()
+        4.-0
+        5.*1
+    -->
+    <!--其他类型与boolean转换
+        var obj; !!obj;检查是否是Object
+        1.非空字符串---true
+        2.非零数字---true
+        3.所有对象---true
+        4.空类型---false
+    -->
+    <!--装箱与拆箱
+        1.装箱：将 基本数据类型转换成 对应的 复合数据类型
+        2.拆箱：将 复合数据类型转换成 对应的 基本数据类型
+    -->
+    <!--常用内置对象 (Object Function 构造函数)
+        Array
+            1.push 在数组的最后追加元素 可以是一个或者多个
+            2.pop 删除数组元素的最后一个元素，并且将删除元素作为方法的返回值
+            3.unshift 在第一个元素上插入元素 可以是一个或者多个
+            4.shift 删除数组元素的第一个元素 并且将删除元素作为方法的返回值
+            5.*slice(start,end)返回一个新数组
+            6.splice(start,length,args)
+            模拟栈结构-后入先出 push pop
+            模拟堆结构-先入先出 push shift
+            7.join() 将数组的每一个元素以指定的字符串 拼接成一个新字符串 作为方法的返回值
+            8.reverse 反转数组
+            9.sort(function(a,b){}) a,b是数组中的元素，a在b之前。如果回调函数的返回值>0，此时就交换a,b的位置
+            10.concat() 拼接数组
+            11.forEach()
+                $.each(obj,fn)
+                arr.forEach(funciton(v,i,arr){}) 无返回值
+            12.map(function(v,i){}) 映射
+
+        Date
+            1.getDate() 一个月的某一天
+            2.getFullYear() 年份
+            3.getMonth() 0-11 月份
+            4.getDay() 0-6 星期
+            5.getHours() 0-23 小时
+            6.getMinutes() 0-59 分钟
+            7.getSeconds() 0-59 秒
+
+        Math
+            1.Math.PI π
+            2.Math.random 0-1 伪随机数
+            3.Math.ceil 向上取整
+            4.Math.floor 向下取整
+            5.Math.abs 绝对值
+            6.Math.pow(x,y) x的y次幂
+            7.Math.sqrt 开根号
+
+        String
+            1.字符串截取
+                1.slice(start,end)
+                2.substr(start,length)
+                3.substring(start,end)
+            2.替换
+                replace() 第一个参数可以传正则表达式
+            3.分割
+                split() 也可以传正则表达式
+            4.trim 去掉空格
+            5.indexOf 查找
+            6.lastIndexOf 从后往前找
+            7.toLowerCase/toUpperCase 转换大小写
+        Number
+            1.valueOf() 返回原始数值
+            2.toString() 转换成字符串
+        Boolean
+            1.valueOf() 返回boolean的布尔值
+            2.toString() 转换成字符串
+        RegExp
+
+        Error
+
+    -->
+    <!--DOM操作相关属性以及方法
+        属性
+            1.parentNode 父节点
+            2.firstChild 第一个子节点
+            3.lastChild 最后一个子节点
+            4.innerHTML
+            5.nextSibling 下一个兄弟节点
+            6.previousSibling 上一个兄弟节点
+            7.nodeType 节点类型 1-12
+                返回 1 元素节点
+                返回 2 属性节点
+                返回 3 文本节点
+                返回 8 注释节点
+                返回 9 document对象
+                返回 11 documentFragment文档片断
+
+            8.nodeName 节点名字 所有元素操作dom方法都是通过父元素调用
+            9.childNodes 获取所有的子节点
+        操作
+            1.增
+                parentNode.appendChild(new node) 追加一个子节点
+                parentNode.insertBefore(new node,node2) 给父节点node2节点后追加一个子节点
+            2.删
+                parentNode.removeChild(node) 删除一个节点
+            3.改
+                parentNode.replaceChild(new node,node2)
+            4.查 在parentNode的后代中查询
+                parentNode.getElementById(idName) 按id查找
+                parentNode.getElementsByTagName(tagName) 按标签查找
+                parentNode.getElementsByName(Name) 按name属性来查找
+                parentNode.querySelector()
+                parentNode.querySelectorAll()
+    -->
+</head>
+<body>
+<script>
+    //    console.log([] == ![]);
+    //1.[] == ![]→flase
+    //2.[] == flase→0
+    //3.[]→"" == 0
+    //4.""→0 == 0
+
+    //    console.log({} == !{});
+    //    {}==!{}→flase
+    //    {}==flase→0
+    //    {}→"[objct Object]"==0
+    //    "[objct Object]"→NaN==0
+
+    //    var arr=[1,7,5,3,9];
+    //    arr.sort(function(a,b){
+    //        return a>b?1:-1;
+    //    });
+    //    console.log(arr);
+
+    //    arr=[
+    //        {name:'zs',age:19},
+    //        {name:'ls',age:29},
+    //        {name:'lbx',age:9}
+    //    ];
+    //    arr.sort(function(a,b){
+    //        return a.age> b.age?-1:1;
+    //    })
+    //    console.log(arr);
+
+</script>
+</body>
+</html>
