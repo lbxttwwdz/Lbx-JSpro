@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Lbx-TsTxWwdz</title>
+    <!--If(good code){Writer is SexBear-Lbx;}else{I don’t know who is writer;}-->
+    <!--对象的概念
+            无序的键值对集合-->
+    <!--创建对象的方式
+            1.字面量   var obj={};
+            2.构造函数方式    var obj = new object();
+            3.工厂模式
+                首先创建一个工厂函数，由该函数负责创建对象。将对象相关属性作为工厂函数的实参传入即可
+                创建对象，根据工厂函数形参为对象添加属性
+                将上述对象作为工厂函数的返回值
+    -->
+    <!--面向对象的思想
+            1.面向过程：亲力亲为，按部就班的来实现。维护性差，面对需求变化的能力不强
+                起床→穿衣服→拿钱2→带手机2→穿鞋3→下楼3→找到摊子4→买煎饼4→吃煎饼
+            2.面向对象：在解决问题时，先看是否有某个对象可以帮助我解决。如果有就使用该对象的方法属性来解决，如果没有就自己实现。在实现时，如果该问题是共性问题，可以考虑定义一个对象来解决（实现代码复用）。
+                优势 代码复用性提高
+    -->
+    <!--原型：原型就是函数的prototype属性所引用的对象
+            1.原型的好处 实现同类对象的数据共享。
+            2.获取原型的方式
+                1.通过函数获取：函数名字.prototype
+                2.通过变量获取：变量名字.__proto__     非标准属性 服务器为了开发方便
+            3.原型属性
+                站在函数角度 由于原型是函数的prototype属性引用的对象 所以将原型也成为函数的原型属性
+                站在对象角度 由于所有对象都有原型 所以也将原型成为对象的原型对象
+            4.原型 构造函数 对象 的关系
+                1.原型 默认具有constructor属性，该属性引用的是其构造函数
+                2.对象 默认具有__proto__属性，该属性引用的该对象的原型对象
+                3.一般函数 默认具有prototype属性，该元素引用的是其原型属性
+            5.原型的特性-----重点
+                1.共享性---原型上的所有成员（属性和方法）都可以被其对象直接访问
+                2.唯一性---由构造函数创建出来的对象 共享一个原型
+                3.不可变性---对象无法直接修改其原型的成员
+                4.动态性---在原有的原型上直接扩展成员 直接反应到创建出来的对象上
+                        ---如果替换掉原有的原型 那么以前创建的对象，无法获取新原型的成员。之后创建的对象才可以。
+                        ---在替换原型是会造成默认的constructor属性丢失，可以考虑给新原型添加该属性。
+                        ---实现原型动态性时，可以再原 原型上替换掉原型。看那个方式更加方便
+            6.组合方法创建对象
+                1.对象的特有属性（随对象不同而不同的那些属性）写到构造函数内部
+                2.对象的共有属性，写到其原型上，来实现共享。
+    -->
+
+</head>
+<body>
+
+<script>
+//    1.工厂模式 字面量
+//    function createCar(color,name,brand){
+//        var car={};
+//        car.color=color;
+//        car.name=name;
+//        car.brand=brand;
+//        return car;
+//    }
+//    console.log(createCar('black','wlzg','ca'))
+//    2.工厂模式 构造函数
+//    function Car(color,name,brand){
+//        this.color=color;
+//        this.name=name;
+//        this.brand=brand;
+//    }
+//    function createCar(color,name,brand){
+//        var car=new Car(color,name,brand);
+//        car.run=function(){
+//            console.log('run');
+//        }
+//        return car;
+//    }
+//    console.log(Car(1,2,3));
+//    console.log(new Car(1,2,3));
+//    console.log(createCar('ni','cai','cai'))
+//    console.log(new createCar('ni','cai','cai'))
+
+
+//    原型概念
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+        this.sayHi=function(){
+            console.log(name + 'hello,world' +age);
+        }
+    }
+    var lzx=new Person('刘斩仙',28);
+    var wzm=new Person('王诛魔',31);
+    lzx.sayHi();
+    wzm.sayHi();
+//    构造函数 ma>原型 die>对象 erzi
+
+//    思考1：lzx和wzm的sayHi是不是一个方法
+    console.log(lzx.sayHi === wzm.sayHi);
+
+//    兼容__proto__
+    function getPrototype(obj){
+        if(obj.__proto__){
+            return obj.__proto__;
+        }else{
+            return obj.constructor.prototype;
+        }
+    }
+</script>
+</body>
+</html>
