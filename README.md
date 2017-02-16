@@ -1,5 +1,5 @@
 # Lbx-JSpro
-js深入自学道路。如果有错误希望大家指正<br>
+js深入学习道路。如果有错误希望大家指正<br>
 特别感谢 《JavaScript高级程序设计（第3版）》简称高三<br>
 特别感谢 百度 www.baidu.com<br>
 特别感谢 cctv<br>
